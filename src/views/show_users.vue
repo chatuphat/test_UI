@@ -35,7 +35,10 @@
           <td>{{ doctorprofile.createdAt }}</td>
           <td>{{ doctorprofile.updatedAt }}</td>
           <td>
-            <button class="btn btn-succes btn-sm mr-2">เเก้ไข</button>
+            <router-link :to="`/edit_user/${doctorprofile._id}`">
+              <button class="btn btn-succes btn-sm mr-2">เเก้ไข</button>
+            </router-link>
+
             <button
               class="btn btn-succes btn-sm mr-2"
               @click="delete_users(doctorprofile._id)"
