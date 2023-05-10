@@ -1,27 +1,27 @@
-<template>
+ class="text-base<template>
   <div class="overflow-x-auto">
     <div>
       <input
-        class="border-b-gray-700"
+        class="input input-bordered input-success w-full max-w-xs mr-4"
         type="text"
         v-model="searchText"
-        placeholder="Search by name"
+        placeholder="ค้นชื่อเเพทย์"
       />
-      <button class="btn btn-success mb-4" @click="search">Search</button>
+      <button class="btn btn-success mb-4" @click="search">ค้นหา</button>
     </div>
 
     <table class="table w-full">
       <thead>
         <tr>
-          <th></th>
-          <th>ID</th>
-          <th>ชื่อเเพทย์เเละนามสกุล</th>
-          <th>ชื่อ</th>
-          <th>นามสกุล</th>
-          <th>รหัส</th>
-          <th>วันที่สร้าง</th>
-          <th>วันที่เเก้ไข</th>
-          <th>เครื่องมือ</th>
+          <th class="text-base"></th>
+          <th class="text-base">ID</th>
+          <th class="text-base">ชื่อเเพทย์เเละนามสกุล</th>
+          <th class="text-base" >ชื่อ</th>
+          <th class="text-base" >นามสกุล</th>
+          <th class="text-base" >รหัส</th>
+          <th class="text-base" >วันที่สร้าง</th>
+          <th class="text-base" >วันที่เเก้ไข</th>
+          <th class="text-base">เครื่องมือ</th>
         </tr>
       </thead>
       <tbody>
@@ -32,15 +32,21 @@
           <td>{{ doctorprofile.firstNameTH }}</td>
           <td>{{ doctorprofile.lastNameTH }}</td>
           <td>{{ doctorprofile.codeDoctor }}</td>
-          <td>{{ doctorprofile.createdAt }}</td>
-          <td>{{ doctorprofile.updatedAt }}</td>
+          <td>
+            {{ moment(doctorprofile.createdAt).format("YYYY-MM-DD HH:mm") }}
+          </td>
+          <td>
+          {{
+            moment(doctorprofile.updatedAt).format("YYYY-MM-DD HH:mm")
+          }}
+          </td>
           <td>
             <router-link :to="`/edit_user/${doctorprofile._id}`">
-              <button class="btn btn-succes btn-sm mr-2">เเก้ไข</button>
+              <button class="btn btn-warning btn-sm mr-2">เเก้ไข</button>
             </router-link>
 
             <button
-              class="btn btn-succes btn-sm mr-2"
+              class="btn btn-error btn-sm mr-2"
               @click="delete_users(doctorprofile._id)"
             >
               ลบ
@@ -54,6 +60,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import axios from "axios";
+import moment from "moment";
 
 const doctorprofiles = ref({});
 const searchText = ref("");
